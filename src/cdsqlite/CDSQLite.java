@@ -5,6 +5,11 @@
  */
 package cdsqlite;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author otorradomiguez
@@ -16,7 +21,16 @@ public class CDSQLite {
      */
     public static void main(String[] args) {
         InterfaceSQLite miDB= new InterfaceSQLite();
-        System.out.println(miDB.conectar());
+        miDB.conectar();
+        try {
+            Statement st=miDB.cn.createStatement();
+            st.executeUpdate("drop table prueba");
+            st.executeUpdate("create table prueba(nombre string, apellido varchar, id integer)");
+            miDB.insertar("prueba", "Paco","Garcia","71dhfgkjdgfgdf");
+        } catch (SQLException ex) {
+            Logger.getLogger(CDSQLite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        miDB.consultar("prueba", "nombre","apellido","id");
     }
     
 }
