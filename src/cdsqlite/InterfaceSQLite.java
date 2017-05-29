@@ -74,7 +74,7 @@ public class InterfaceSQLite {
         }
     }
     
-    public boolean insertar(String tabla, String... values){
+    public boolean inserta(String tabla, String... values){
         try{
             String insertar="insert into "+tabla+" values(";
             for(int i=0; i<values.length;i++){
@@ -85,7 +85,7 @@ public class InterfaceSQLite {
                 }
             }
             Statement st=cn.createStatement();
-            st.executeQuery(insertar);
+            st.executeUpdate(insertar);
             return true;
         }catch(SQLException e){
             return false;
