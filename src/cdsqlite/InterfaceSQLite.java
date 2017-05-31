@@ -92,7 +92,7 @@ public class InterfaceSQLite {
         }
     }
     
-    public void borrar(){
+    public void borrar(String tabla, String... values){
         
     }
     

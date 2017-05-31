@@ -26,7 +26,7 @@ public class CDSQLite {
             Statement st=miDB.cn.createStatement();
             st.executeUpdate("drop table prueba");
             st.executeUpdate("create table prueba(nombre string, apellido varchar, id integer)");
-            miDB.insertar("prueba", "Paco","Garcia","71dhfgkjdgfgdf");
+            miDB.inserta("prueba", "Paco","Garcia","71dhfgkjdgfgdf");
         } catch (SQLException ex) {
             Logger.getLogger(CDSQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
