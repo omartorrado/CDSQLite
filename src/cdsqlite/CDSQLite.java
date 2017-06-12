@@ -25,12 +25,19 @@ public class CDSQLite {
         try {
             Statement st=miDB.cn.createStatement();
             st.executeUpdate("drop table prueba");
-            st.executeUpdate("create table prueba(nombre string, apellido varchar, id integer)");
-            miDB.inserta("prueba", "Paco","Garcia","71dhfgkjdgfgdf");
+            st.executeUpdate("create table prueba(nombre string, apellido varchar, id integer, primary key(id))");
+            miDB.inserta("prueba", "Paco","Garcia","71");
+            miDB.inserta("prueba", "Miguel", "Lopez","666");
         } catch (SQLException ex) {
             Logger.getLogger(CDSQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("");
         miDB.consultar("prueba", "nombre","apellido","id");
+        System.out.println(miDB.modificar("prueba", "id", "71", "Pedro", "Garcia", "7777"));
+        miDB.consultar("prueba", "nombre","apellido","id");
+        System.out.println(miDB.borrar("prueba", "Pedro", "Garcia", "7777"));
+        System.out.println(miDB.consultar("prueba", "nombre","apellido","id"));
+        
     }
     
 }

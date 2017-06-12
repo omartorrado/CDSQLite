@@ -83,6 +83,7 @@ public class InterfaceSQLite {
                 numEntries++;
                 System.out.println(rs.getString(1) + " , " + rs.getString(2) + " , " + rs.getInt(3));
             }
+            System.out.print("Registros encontrados: ");
             return numEntries;
         } catch (SQLException e) {
             return -1;
@@ -128,12 +129,13 @@ public class InterfaceSQLite {
             for (int i = 0; i < values.length; i++) {
                 if (i == (values.length - 1)) {
                     rs.next();
-                    borrar = borrar + rs.getString(2) + "='" + values[i] + "')";
+                    borrar = borrar + rs.getString(2) + "='" + values[i] + "';";
                 } else {
                     rs.next();
-                    borrar = borrar +rs.getString(2) + "='" + values[i] + "', ";
+                    borrar = borrar +rs.getString(2) + "='" + values[i] + "' and ";
                 }
             }
+            System.out.println(borrar);
             Statement st2 = cn.createStatement();
             st2.executeUpdate(borrar);
             return true;
@@ -160,13 +162,14 @@ public class InterfaceSQLite {
             for (int i = 0; i < values.length; i++) {
                 if (i == (values.length - 1)) {
                     rs.next();
-                    modificar = modificar + rs.getString(2) + "='" + values[i] + "')";
+                    modificar = modificar + rs.getString(2) + "='" + values[i] + "' ";
                 } else {
                     rs.next();
                     modificar = modificar +rs.getString(2) + "='" + values[i] + "', ";
                 }
             }
             modificar= modificar + "where "+primaryKeyName+"='"+primaryKeyValue+"'";
+            System.out.println(modificar);
             Statement st2 = cn.createStatement();
             st2.executeUpdate(modificar);
             return true;
